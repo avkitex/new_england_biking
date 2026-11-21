@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "fields": {
+    "surface": {
+      "label": "Surface",
+      "values": [
+        {"id": "asphalt", "label": "Asphalt / paved", "class": "paved", "color": "#2f6fa8"},
+        {"id": "boardwalk", "label": "Boardwalk / bridge deck", "class": "paved", "color": "#8a6d3b"},
+        {"id": "fine_gravel", "label": "Fine gravel / stone dust", "class": "unpaved", "color": "#d9a21b"},
+        {"id": "loose_gravel", "label": "Loose or coarse gravel", "class": "unpaved", "color": "#c1561e"},
+        {"id": "dirt", "label": "Dirt / singletrack", "class": "unpaved", "color": "#7a4a2b"},
+        {"id": "unknown", "label": "Unknown", "class": "unknown", "color": "#8794a0"}
+      ]
+    },
+    "passability": {
+      "label": "Passability",
+      "values": [
+        {"id": "easy", "label": "Easy to ride", "color": "#2e9e5b"},
+        {"id": "hard", "label": "Hard / technical", "color": "#e08a1e"},
+        {"id": "no", "label": "Not rideable", "color": "#c62d2d"},
+        {"id": "unknown", "label": "Not rated", "color": "#8794a0"}
+      ]
+    },
+    "grade": {
+      "label": "Grade",
+      "values": [
+        {"id": "flat", "label": "Flat", "color": "#2e9e5b"},
+        {"id": "gentle", "label": "Gentle slope", "color": "#d9a21b"},
+        {"id": "steep", "label": "Steep", "color": "#c62d2d"},
+        {"id": "unknown", "label": "Not rated", "color": "#8794a0"}
+      ]
+    },
+    "crossings": {
+      "label": "Road crossings",
+      "values": [
+        {"id": "none", "label": "No crossings", "color": "#2e9e5b"},
+        {"id": "few", "label": "A few crossings", "color": "#d9a21b"},
+        {"id": "many", "label": "Many crossings", "color": "#c62d2d"},
+        {"id": "unknown", "label": "Not rated", "color": "#8794a0"}
+      ]
+    }
+  },
+  "tags": [
+    {"id": "closure", "label": "Closure / bridge out", "icon": "🚧"},
+    {"id": "floods", "label": "Floods", "icon": "🌊"},
+    {"id": "gates", "label": "Gates / bollards", "icon": "🚪"},
+    {"id": "parking", "label": "Parking", "icon": "🅿️"},
+    {"id": "restroom", "label": "Restroom", "icon": "🚻"},
+    {"id": "water", "label": "Drinking water", "icon": "🚰"},
+    {"id": "scenic", "label": "Scenic", "icon": "🌳"},
+    {"id": "caution", "label": "Caution", "icon": "⚠️"}
+  ]
+}

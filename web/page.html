@@ -1,0 +1,49 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="referrer" content="strict-origin-when-cross-origin"><meta name="viewport" content="width=device-width,initial-scale=1"><title>New England cycling trails</title><style>/*LEAFLET_CSS*/</style><style>/*STYLE*/</style></head><body>
+<header><h1>New England cycling trails</h1><div id="stats">Six states · trail catalog and ridden sections</div></header>
+<div class="layout"><aside>
+<!--#editor-->
+<label for="version">Data updated</label><select id="version"></select><div class="note">Distances reflect displayed GPS geometry.</div>
+<!--#end-->
+<label for="state">State</label><select id="state"><option value="">All New England</option><option value="MA">Massachusetts</option><option value="NH">New Hampshire</option><option value="VT">Vermont</option><option value="ME">Maine</option><option value="CT">Connecticut</option><option value="RI">Rhode Island</option></select>
+<label for="search">Find a trail</label><input id="search" type="search" placeholder="Minuteman, Cape Cod, Eastern…">
+<label for="trail">Trails on the map</label><select id="trail"><option value="">All results</option></select>
+<div id="catalogCount" aria-live="polite"></div>
+<div class="legend"><label class="toggle"><input type="checkbox" id="known" checked><span class="sw" style="background:#637383"></span>Known trails</label><label class="toggle"><input type="checkbox" id="matched" checked><span class="sw" style="background:#cc1667;height:6px"></span>Ridden sections ≈</label><label class="toggle"><input type="checkbox" id="gps" checked><span class="sw" style="background:repeating-linear-gradient(90deg,#cc1667 0 5px,transparent 5px 8px)"></span>GPS tracks I rode</label></div>
+<label for="visited">Trail coverage</label><select id="visited"><option value="">All</option><option value="yes">Has ridden sections</option><option value="no">No matched rides</option></select>
+<label for="surface">Surface</label><select id="surface"><option value="">Any</option><option value="paved">Paved</option><option value="unpaved">Gravel / unpaved</option><option value="unknown">Unknown</option></select>
+<label for="colorBy">Color trails by</label><select id="colorBy"><option value="">Default</option></select><div id="legendBy" class="note"></div>
+<label for="tagFilter">Only trails with tag</label><select id="tagFilter"><option value="">Any</option></select>
+<div class="buttonrow"><button id="fit">Fit trails</button><button id="myrides">Fit my rides</button></div>
+<label for="contrast">Basemap detail</label><input id="contrast" class="range" type="range" min="0" max="100" value="50"><div class="note">Quiet background ← → Detailed background</div>
+<div id="baseError" role="status">Basemap unavailable. Trail and ride layers still work.</div>
+<div id="detail" aria-live="polite">Click a trail for its name, length, surface, ridden coverage and source.</div>
+<!--#editor-->
+<section id="exPanel"><h2>Remove from map (private)</h2><p class="note">Cuts your GPS out of every snapshot and the public site. The rule is saved only in your private <code>exclusions.csv</code>, never in the repository. Catalog trails stay.</p>
+<div class="buttonrow"><button class="exShape" data-k="circle" type="button">Circle</button><button class="exShape" data-k="box" type="button">Box</button><button class="exShape" data-k="polygon" type="button">Polygon</button></div>
+<button id="exFinish" type="button" style="display:none">Close polygon</button>
+<div class="buttonrow"><button id="exConfirm" type="button" disabled>Confirm removal</button><button id="exCancel" type="button" disabled>Cancel</button></div>
+<button id="exRebuild" type="button" disabled>Rebuild now (apply rules)</button>
+<div id="exStatus" role="status" aria-live="polite"></div></section>
+<section id="editPanel"><h2>Edit trails</h2><p class="note">Click a trail to select it. Ctrl/Shift-click adds or removes trails; Shift-drag draws a box. Then set values below and apply. Changes are written to <code>annotations/annotations.json</code>, which is published.</p>
+<div class="note">Click any solid trail or dashed GPS track. Alt-click a second section of the same ride to take everything between. Box-select, "along a line" and "Select all shown" take:</div><div class="buttonrow" id="selKinds"><label class="toggle"><input type="checkbox" id="selTrails" checked> Catalog trails</label><label class="toggle"><input type="checkbox" id="selRoads" checked> GPS tracks</label></div>
+<div id="selSummary">Nothing selected.</div>
+<button id="alongBtn" type="button">Select along a line</button><label for="alongWidth">Corridor half-width (m)</label><input id="alongWidth" type="number" min="5" max="200" value="30">
+<div class="buttonrow"><button id="selAll" type="button">Select all shown</button><button id="selClear" type="button">Clear</button></div>
+<button id="pickRange" type="button" disabled>Pick part of the selected trail (2 clicks)</button>
+<div id="fields"></div><div id="tagsBox"></div>
+<label for="comment">Comment (public)</label><textarea id="comment" rows="3" maxlength="1000" placeholder="Leave untouched to keep existing comments"></textarea>
+<div class="buttonrow"><button id="applyEdit" type="button" disabled>Apply to selection</button><button id="reloadAnn" type="button">Reload</button></div>
+<div class="buttonrow"><button id="drawBlocked" type="button">Draw: no bike passage here</button></div>
+<div class="note" id="drawHint">For a place where you cannot ride a bike at all (water, private land, a missing link): press the button, click the corners of that area on the map, then Enter or double-click. It is saved as a red hatched area, so it cannot be mistaken for a ridden track. Click the area later to select it; set Passability to "(clear)" and Apply to delete it. Esc cancels.</div>
+<div id="annStatus" role="status" aria-live="polite">Loading annotations…</div></section>
+<!--#end-->
+<details><summary>Other layers<!--#editor--> and rides<!--#end--></summary><label class="toggle"><input type="checkbox" id="unnamed">Unnamed paths</label><label class="toggle"><input type="checkbox" id="planned">Planned / under construction</label><label class="toggle"><input type="checkbox" id="lanes">Bike lanes and on-road routes</label><label class="toggle"><input type="checkbox" id="mtb">CT DEEP mountain-bike trails</label>
+<!--#editor-->
+<label for="ride">Individual ride</label><select id="ride"><option value="">All rides</option></select>
+<!--#end-->
+</details>
+<details><summary>Sources and accuracy</summary><p class="note">278 rail-trail source records from <a href="https://www.trailspotting.com/p/trailspotting-rail-trails.html" target="_blank" rel="noopener">Trailspotting</a>, supplemented by MassGIS, NHDOT, VTrans, RIDOT/RIGIS and CT DEEP. Downloaded October 8, 2026. Coverage varies; listings do not guarantee current access or cycling permission.</p><p class="note">Approximate GPS matching: within 20 metres, similar direction, at least 100 continuous metres. Parallel roads may cause false matches. Repeated rides do not add to covered trail length. Unknown surface does not mean paved.</p><p class="note">Some Rhode Island project statuses are old. Check the source before riding. Active railways and No Access layers are excluded.</p><p class="note"><!--#editor-->GPS and notes stay on this computer. <!--#end-->OpenStreetMap supplies the background for the visible area. Catalogs © their respective authors. Trailspotting is an attributed personal local copy.</p></details>
+</aside><div id="map" aria-label="Six-state cycling trail map"></div></div>
+<script>/*LEAFLET_JS*/</script><script>
+/*SCRIPT*/
+</script></body></html>
