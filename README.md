@@ -88,7 +88,7 @@ Besides clicking sections: **Alt-click** a second section of the same ride to ta
 
 ### Blocked sections
 
-**Draw: non-bikeable area** is for a place where you cannot ride at all (water, private land, a missing link): click the corners, Enter or double-click. It is stored as an area (red, hatched outline, translucent fill, never a line) with passability "not rideable", clipped by the exclusion rules. Click the area to select it; Passability "(clear)" + Apply deletes it. To mark part of a catalog trail that does not exist in reality, pick the trail, use **Pick part of the selected trail** and set Passability to *Not rideable*; such sections are drawn red on both pages. Annotated GPS tracks show as regular solid lines.
+**Draw: non-bikeable area** is for a place where you cannot ride at all (water, private land, a missing link): click the corners, Enter or double-click. It is stored as an area (light-blue dashed outline, translucent fill, never a ridden-style line) with passability "not rideable", clipped by the exclusion rules. Click the area to select it; Passability "(clear)" + Apply deletes it. To mark part of a catalog trail that does not exist in reality, pick the trail, use **Pick part of the selected trail** and set Passability to *Not rideable*; such sections are drawn as a light-blue dashed line on both pages. Annotated GPS tracks show as regular solid lines.
 
 ## License
 

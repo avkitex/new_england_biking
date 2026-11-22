@@ -17,7 +17,7 @@
       "values": [
         {"id": "easy", "label": "Easy to ride", "color": "#2e9e5b"},
         {"id": "hard", "label": "Hard / technical", "color": "#e08a1e"},
-        {"id": "no", "label": "Not rideable", "color": "#c62d2d"},
+        {"id": "no", "label": "Not rideable", "color": "#4fb3ff"},
         {"id": "unknown", "label": "Not rated", "color": "#8794a0"}
       ]
     },

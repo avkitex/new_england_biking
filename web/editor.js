@@ -131,7 +131,7 @@ async function apply(){
 
 // ---------- draw a blocked section ----------
 function lineLayer(){if(linePreview){ctx.map.removeLayer(linePreview);linePreview=null;}
- if(lineDraw&&lineDraw.length)linePreview=L.layerGroup([(lineTool==='area'&&lineDraw.length>2?L.polygon:L.polyline)(lineDraw.map(p=>[p[1],p[0]]),{pane:'selected',color:lineTool==='area'?'#c62d2d':'#2b7bd1',weight:3,dashArray:'6 6',fillOpacity:.2,interactive:false}),...lineDraw.map(p=>L.circleMarker([p[1],p[0]],{pane:'selected',radius:4,color:'#c62d2d',fillOpacity:1,interactive:false}))]).addTo(ctx.map);}
+ if(lineDraw&&lineDraw.length)linePreview=L.layerGroup([(lineTool==='area'&&lineDraw.length>2?L.polygon:L.polyline)(lineDraw.map(p=>[p[1],p[0]]),{pane:'selected',color:'#2b9be8',weight:3,dashArray:'6 6',fillOpacity:.2,interactive:false}),...lineDraw.map(p=>L.circleMarker([p[1],p[0]],{pane:'selected',radius:4,color:'#c62d2d',fillOpacity:1,interactive:false}))]).addTo(ctx.map);}
 function startLine(tool){if(ExcludeTool.active()){status('Finish or cancel the removal drawing first.');return;}if(tool==='area')clearSelection();lineTool=tool;lineDraw=[];$('map').classList.add('drawing');$('drawBlocked').textContent=tool==='area'?'Done (Enter)':'Draw: non-bikeable area';$('alongBtn').textContent=tool==='corridor'?'Done (Enter)':'Select along a line';status(tool==='area'?'Click the corners of the area. Enter or double-click to save it as not bikeable.':'Click along the road you want to select. Enter or double-click to select every GPS section along it.');}
 function addLinePoint(latlng){lineDraw.push([+latlng.lng.toFixed(6),+latlng.lat.toFixed(6)]);lineLayer();}
 function cancelLine(){if(!lineDraw)return;lineDraw=null;$('map').classList.remove('drawing');$('drawBlocked').textContent='Draw: non-bikeable area';$('alongBtn').textContent='Select along a line';lineLayer();status('');}
@@ -261,7 +261,7 @@ window.MODE={
   $('selClear').onclick=clearSelection;
   $('pickRange').onclick=()=>{if(range){range=null;renderSelection();return;}pick=1;pickPoints=[];renderSelection();};
   $('applyEdit').onclick=apply;$('reloadAnn').onclick=loadAnnotations;
-  c.map.on('click',e=>{if(lineDraw){addLinePoint(e.latlng);return;}if(ExcludeTool.handleClick(e.latlng))return;if(justBoxed)return;if(pick){handlePick(e.latlng);return;}if(sel.size)clearSelection();});
+  c.map.on('click',e=>{if(lineDraw){addLinePoint(e.latlng);return;}if(ExcludeTool.handleClick(e.latlng))return;if(justBoxed)return;if(pick){handlePick(e.latlng);return;}if(sel.size||roadSel.size||itemSel.size)clearSelection();});
   $('drawBlocked').onclick=()=>lineDraw?(lineTool==='area'?finishLine():(cancelLine(),startLine('area'))):startLine('area');
   $('alongBtn').onclick=()=>lineDraw?(lineTool==='corridor'?finishLine():(cancelLine(),startLine('corridor'))):startLine('corridor');
   c.map.on('dblclick',()=>{if(lineDraw){lineDraw.pop();finishLine();}});
