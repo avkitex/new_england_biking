@@ -2,6 +2,9 @@
 
 Turn your own Strava rides into a map of New England bike trails: a private ETL and local editor, and a public read-only page that shows only anonymous coverage and trail annotations.
 
+**Live page:** https://avkitex.github.io/new_england_biking/ (read-only; published from the `gh-pages` branch by `Publish.ps1`).
+
+
 Run **Start Map.ps1**, then open http://127.0.0.1:8765/ (the editor). **Data updated** switches between your registered private snapshots. The trail catalog was downloaded on October 8, 2026.
 
 ## Private inputs and exclusions
